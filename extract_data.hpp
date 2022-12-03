@@ -3,6 +3,7 @@
 
 #	include <iostream>
 #	include <fstream>
+#	include <vector>
 
 class FileOperator {
 
@@ -10,11 +11,15 @@ class FileOperator {
 		FileOperator(std::string file_path);
 		~FileOperator();
 
-		void	DisplayFile();
+		void	displayFile();
+		void	appendFile(std::string const& line);
+
+		std::vector<std::string> getLines();
+		std::vector<std::string> parseLine(std::string line, int number_of_fields, char separator);
+
 
 	private:
-		std::fstream	_file;
-		std::string		_file_name;
+		const std::string		_file_name;
 
 };
 

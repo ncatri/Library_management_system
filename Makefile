@@ -3,6 +3,11 @@ CXX = c++
 
 NAME = run
 
+USERS_INPUTFILE = abonnes.csv
+BOOKS_INPUTFILE = livres.csv
+USERS_DB = abonnes.db
+BOOKS_DB = livres.db
+
 SRCS = extract_data.cpp 				\
 
 OBJS_FOLDER = bin
@@ -17,11 +22,6 @@ $(OBJS_FOLDER)/%.o: %.cpp $(HEADERS)
 $(NAME): $(OBJS) $(HEADERS) main.cpp
 	$(CXX) $(CPPFLAGS) $(OBJS) main.cpp -o $(NAME)
 
-test:
-	echo sources: $(SRCS)
-	echo objets: $(OBJS)
-	echo headers: $(HEADERS)
-
 clean:
 	$(RM) -r $(OBJS_FOLDER)
 
@@ -31,8 +31,15 @@ fclean: clean
 
 re: fclean $(NAME)
 
-clean_data:
-	cat livres.csv | cut -f3-6 -d ";" | grep -v "Article de REGLES"
+livres_db:
+	cat $(BOOKS_INPUTFILE) | cut -f3-6 -d ";" | grep -v "Article de REGLES" | awk '{if (NR>1) printf "%d;%s;0\n", NR - 1, $$0}' > $(BOOKS_DB)
 
+abonnes_db:
+	tail -n +2 $(USERS_INPUTFILE) > $(USERS_DB)
 
-.PHONY:	clean fclean re
+clean_db:
+	rm $(BOOKS_DB) $(USERS_DB)
+
+databases: abonnes_db livres_db
+
+.PHONY:	clean fclean re clean_db

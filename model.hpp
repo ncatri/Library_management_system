@@ -3,34 +3,58 @@
 
 #	include <iostream>
 #	include <vector>
-#	include <map>
+#	include "extract_data.hpp"
 
 class Book {
 	public:
 		Book();
 		~Book();
-		Book(int id);
+		Book(int id, std::string title1, std::string title2,\
+				std::string author1, std::string author2, int borrowerId);
 
 		int 		getId() const;
 		std::string	getTitle() const;
+		std::string	getAuthor() const;
+		int			getBorrowerId() const;
 
 	private:
-		int			_id;
-		std::string	_title;
-		bool		_is_rented;
+		const int			_id;
+		const std::string	_title;
+		const std::string	_author;
+		int					_borrowerId;
 };
+
+std::ostream& operator<<( std::ostream& o, Book& rhs);
 
 class User {
 	public:
 		User();
 		~User();
 		User(int id);
+		
+		int			getId() const;
+		std::string getName() const;
 
 	private:
 		int 		_id;
 		std::string	_name;
+		std::string	_surname;
 };
 
+std::ostream& operator<<( std::ostream& o, User& rhs);
+
+class Model {
+	public:
+		Model(std::vector<Book> books, std::vector<User> users);
+		~Model();
+
+	private:
+		std::vector<Book> 	_books;
+		std::vector<User> 	_users;
+		FileOperator		_fileOp;
+};
+
+//controller
 class Library {
 	public:
 		Library();

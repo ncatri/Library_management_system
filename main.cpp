@@ -9,7 +9,8 @@ int main(int argc, char** argv) {
 	}
 
 	FileOperator fileOperator(argv[1]);
-	fileOperator.DisplayFile();
+	fileOperator.displayFile();
+	fileOperator.appendFile("coucou c'est moi!");
 
 
 }
