@@ -1,5 +1,5 @@
-#ifndef VIEW_HPP
-#	define VIEW_HPP
+#ifndef MODEL_HPP
+#	define MODEL_HPP
 
 #	include <iostream>
 #	include <vector>
@@ -11,7 +11,8 @@ class Book {
 		~Book();
 		Book(int id);
 
-		int getId();
+		int 		getId() const;
+		std::string	getTitle() const;
 
 	private:
 		int			_id;
@@ -50,7 +51,7 @@ class View {
 
 	public:
 
-		View();
+		View(Library& library);
 		~View();
 
 		void showRentedBooks() {
