@@ -20,6 +20,8 @@ class FileOperator {
 		std::vector<Book>	loadBooks();
 		std::vector<User>	loadUsers();
 
+		void	saveBooks(std::vector<Book>, std::string books_file_write);
+		void	saveUsers(std::vector<User>, std::string users_file_write);
 
 	private:
 		std::vector<std::string> 	fromLinesToAttributes(std::string file_name);

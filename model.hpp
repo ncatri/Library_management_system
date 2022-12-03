@@ -18,6 +18,8 @@ class Book {
 		std::string	getAuthor2() const;
 		int			getBorrowerId() const;
 
+		void		setBorrowerId(int id);
+
 	private:
 		const int			_id;
 		const std::string	_title1;
@@ -28,7 +30,6 @@ class Book {
 };
 
 std::ostream& operator<<( std::ostream& o, Book& rhs);
-std::ofstream& operator<<( std::ofstream& o, Book& rhs);
 
 class User {
 	public:

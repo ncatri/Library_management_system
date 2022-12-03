@@ -22,7 +22,8 @@ std::string	Book::getAuthor1() const {
 std::string	Book::getAuthor2() const {
 	return (this->_author2);
 }
-int	Book::getBorrowerId() const { return (this->_borrowerId); }
+int		Book::getBorrowerId() const { return (this->_borrowerId); }
+void	Book::setBorrowerId(int id) { this->_borrowerId = id; }
 
 std::ostream&	operator<<( std::ostream& o, Book& rhs ) {
 	// overload used to write in database
@@ -31,7 +32,7 @@ std::ostream&	operator<<( std::ostream& o, Book& rhs ) {
 	o << rhs.getTitle2() << ";" ;
 	o << rhs.getAuthor1() << ";" ;
 	o << rhs.getAuthor2() << ";" ;
-	o << rhs.getBorrowerId() << ";" ;
+	o << rhs.getBorrowerId();
 	return (o);
 }
 
