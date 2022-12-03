@@ -1,28 +1,21 @@
 #include "extract_data.hpp"
 
-FileOperator::FileOperator( std::string file_path): _file_name(file_path) {}
+FileOperator::FileOperator( std::string books_file_path, std::string users_file_path): _books_file_name(books_file_path), _users_file_name(users_file_path) {}
 
 FileOperator::~FileOperator() {}
 
-void	FileOperator::displayFile() {
-	std::string line;
-	std::ifstream file(this->_file_name);
-
-	if (file.is_open()) {
-		while (getline(file, line))
-			std::cout << line << std::endl;
-	}
-	else
-		std::cout << "can't open file " << this->_file_name << "!" << std::endl;
-}
-
 std::vector<Book> FileOperator::loadBooks() {
-	std::vector<std::string> attributes = this->fromLinesToAttributes();
-	return (this->fromAttributesToObjects(attributes));
+	std::vector<std::string> attributes = this->fromLinesToAttributes(this->_books_file_name);
+	return (this->fromAttributesToBooks(attributes));
 }
 
-std::vector<std::string> FileOperator::fromLinesToAttributes() {
-	std::ifstream file(this->_file_name);
+std::vector<User> FileOperator::loadUsers() {
+	std::vector<std::string> attributes = this->fromLinesToAttributes(this->_users_file_name);
+	return (this->fromAttributesToUsers(attributes));
+}
+
+std::vector<std::string> FileOperator::fromLinesToAttributes(std::string file_name) {
+	std::ifstream file(file_name);
 	std::string line;
 	std::vector<std::string> result;
 	if (file.is_open()) {
@@ -32,8 +25,7 @@ std::vector<std::string> FileOperator::fromLinesToAttributes() {
 	return (result);
 }
 
-// should I output directly Book and User object?
-std::vector<Book>	FileOperator::fromAttributesToObjects(std::vector<std::string> strings) {
+std::vector<Book>	FileOperator::fromAttributesToBooks(std::vector<std::string> strings) {
 	std::vector<Book> books;
 
 	std::vector<std::string> attributes;
@@ -47,6 +39,19 @@ std::vector<Book>	FileOperator::fromAttributesToObjects(std::vector<std::string>
 	return (books);
 }
 
+std::vector<User>	FileOperator::fromAttributesToUsers(std::vector<std::string> strings) {
+	std::vector<User> users;
+
+	std::vector<std::string> attributes;
+	
+	typedef std::vector<std::string>::iterator iterator;
+	for (iterator it = strings.begin(); it != strings.end(); ++it) {
+		attributes = split(*it, ';');
+		users.push_back(User(atoi(attributes[0].c_str()), attributes[1], attributes[2])); 
+	}
+
+	return (users);
+}
 std::vector<std::string> split(std::string str, char sep) {
 	std::vector<std::string> result;
 	std::stringstream sstr(str);
@@ -57,9 +62,3 @@ std::vector<std::string> split(std::string str, char sep) {
 	return (result);	
 }
 
-
-void	FileOperator::appendFile(std::string const& line) {
-	std::ofstream file;
-	file.open(this->_file_name, std::ios::app);
-	file << line << '\n';
-}

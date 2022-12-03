@@ -34,7 +34,7 @@ class User {
 	public:
 		User();
 		~User();
-		User(int id);
+		User(int id, std::string name, std::string surname);
 		
 		int			getId() const;
 		std::string getName() const;

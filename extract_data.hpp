@@ -11,7 +11,7 @@
 class FileOperator {
 
 	public:
-		FileOperator(std::string file_path);
+		FileOperator(std::string book_file_path, std::string user_file_path);
 		~FileOperator();
 
 		void	displayFile();
@@ -21,12 +21,13 @@ class FileOperator {
 		std::vector<User>	loadUsers();
 
 
-
 	private:
-		std::vector<std::string> 	fromLinesToAttributes();
-		std::vector<Book>			fromAttributesToObjects(std::vector<std::string> strings);
+		std::vector<std::string> 	fromLinesToAttributes(std::string file_name);
+		std::vector<Book>			fromAttributesToBooks(std::vector<std::string> strings);
+		std::vector<User>			fromAttributesToUsers(std::vector<std::string> strings);
 
-		const std::string		_file_name;
+		const std::string		_books_file_name;
+		const std::string		_users_file_name;
 
 };
 
