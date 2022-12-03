@@ -4,6 +4,9 @@
 #	include <iostream>
 #	include <fstream>
 #	include <vector>
+#	include "model.hpp"
+
+#	include <sstream>
 
 class FileOperator {
 
@@ -22,6 +25,8 @@ class FileOperator {
 		const std::string		_file_name;
 
 };
+
+std::vector<std::string> split(std::string str, char sep); 
 
 
 #endif

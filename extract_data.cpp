@@ -28,6 +28,31 @@ std::vector<std::string> FileOperator::getLines() {
 }
 
 // should I output directly Book and User object?
+std::vector<Book>	getBooks(std::vector<std::string> strings) {
+	std::vector<Book> books;
+
+	std::vector<std::string> attributes;
+	
+	typedef std::vector<std::string>::iterator iterator;
+	for (iterator it; it != strings.end(); ++it) {
+		attributes = split(*it, ';');
+		books.push_back(Book(attributes[0], attributes[1], attributes[2], \
+					attributes[3], attributes[4], attributes[5]));
+	}
+
+	return (books);
+}
+
+std::vector<std::string> split(std::string str, char sep) {
+	std::vector<std::string> result;
+	std::stringstream sstr(str);
+	std::string	fragment;
+
+	while (std::getline(sstr, fragment, sep))
+			result.push_back(fragment);
+	return (result);	
+}
+
 
 void	FileOperator::appendFile(std::string const& line) {
 	std::ofstream file;

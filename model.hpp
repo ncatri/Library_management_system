@@ -3,7 +3,6 @@
 
 #	include <iostream>
 #	include <vector>
-#	include "extract_data.hpp"
 
 class Book {
 	public:
@@ -51,7 +50,7 @@ class Model {
 	private:
 		std::vector<Book> 	_books;
 		std::vector<User> 	_users;
-		FileOperator		_fileOp;
+		//FileOperator		_fileOp;
 };
 
 //controller
