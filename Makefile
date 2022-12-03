@@ -8,7 +8,8 @@ BOOKS_INPUTFILE = livres.csv
 USERS_DB = abonnes.db
 BOOKS_DB = livres.db
 
-SRCS = extract_data.cpp 				\
+SRCS = extract_data.cpp 	\
+	   model.cpp
 
 OBJS_FOLDER = bin
 OBJS = $(addprefix $(OBJS_FOLDER)/, $(SRCS:.cpp=.o))

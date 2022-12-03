@@ -1,5 +1,6 @@
 #include <iostream>
 #include "extract_data.hpp"
+#include "model.hpp"
 
 int main(int argc, char** argv) {
 
@@ -9,8 +10,10 @@ int main(int argc, char** argv) {
 	}
 
 	FileOperator fileOperator(argv[1]);
-	fileOperator.displayFile();
-	fileOperator.appendFile("coucou c'est moi!");
 
+	std::vector<Book> books = fileOperator.loadBooks();
 
+	typedef std::vector<Book>::iterator book_iterator;
+	for (book_iterator bi = books.begin(); bi != books.end(); ++bi)
+		std::cout << *bi << std::endl;
 }

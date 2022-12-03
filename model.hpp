@@ -12,18 +12,23 @@ class Book {
 				std::string author1, std::string author2, int borrowerId);
 
 		int 		getId() const;
-		std::string	getTitle() const;
-		std::string	getAuthor() const;
+		std::string	getTitle1() const;
+		std::string	getTitle2() const;
+		std::string	getAuthor1() const;
+		std::string	getAuthor2() const;
 		int			getBorrowerId() const;
 
 	private:
 		const int			_id;
-		const std::string	_title;
-		const std::string	_author;
+		const std::string	_title1;
+		const std::string	_title2;
+		const std::string	_author1;
+		const std::string	_author2;
 		int					_borrowerId;
 };
 
 std::ostream& operator<<( std::ostream& o, Book& rhs);
+std::ofstream& operator<<( std::ofstream& o, Book& rhs);
 
 class User {
 	public:
@@ -33,6 +38,7 @@ class User {
 		
 		int			getId() const;
 		std::string getName() const;
+		std::string getSurname() const;
 
 	private:
 		int 		_id;

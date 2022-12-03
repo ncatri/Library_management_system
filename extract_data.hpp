@@ -17,16 +17,19 @@ class FileOperator {
 		void	displayFile();
 		void	appendFile(std::string const& line);
 
-		std::vector<std::string> getLines();
-		std::vector<std::string> parseLine(std::string line, int number_of_fields, char separator);
+		std::vector<Book>	loadBooks();
+		std::vector<User>	loadUsers();
+
 
 
 	private:
+		std::vector<std::string> 	fromLinesToAttributes();
+		std::vector<Book>			fromAttributesToObjects(std::vector<std::string> strings);
+
 		const std::string		_file_name;
 
 };
 
 std::vector<std::string> split(std::string str, char sep); 
-
 
 #endif

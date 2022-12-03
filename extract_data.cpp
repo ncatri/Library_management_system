@@ -16,7 +16,12 @@ void	FileOperator::displayFile() {
 		std::cout << "can't open file " << this->_file_name << "!" << std::endl;
 }
 
-std::vector<std::string> FileOperator::getLines() {
+std::vector<Book> FileOperator::loadBooks() {
+	std::vector<std::string> attributes = this->fromLinesToAttributes();
+	return (this->fromAttributesToObjects(attributes));
+}
+
+std::vector<std::string> FileOperator::fromLinesToAttributes() {
 	std::ifstream file(this->_file_name);
 	std::string line;
 	std::vector<std::string> result;
@@ -28,16 +33,15 @@ std::vector<std::string> FileOperator::getLines() {
 }
 
 // should I output directly Book and User object?
-std::vector<Book>	getBooks(std::vector<std::string> strings) {
+std::vector<Book>	FileOperator::fromAttributesToObjects(std::vector<std::string> strings) {
 	std::vector<Book> books;
 
 	std::vector<std::string> attributes;
 	
 	typedef std::vector<std::string>::iterator iterator;
-	for (iterator it; it != strings.end(); ++it) {
+	for (iterator it = strings.begin(); it != strings.end(); ++it) {
 		attributes = split(*it, ';');
-		books.push_back(Book(attributes[0], attributes[1], attributes[2], \
-					attributes[3], attributes[4], attributes[5]));
+		books.push_back(Book(atoi(attributes[0].c_str()), attributes[1], attributes[2], attributes[3], attributes[4], atoi(attributes[5].c_str())));
 	}
 
 	return (books);
