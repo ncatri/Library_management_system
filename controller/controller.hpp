@@ -20,6 +20,8 @@ class Controller {
 		void	delete_book();
 		void	delete_user();
 		void	add_book();
+		void	add_user();
+		void	rent_book();
 		void	quit_action();
 };
 

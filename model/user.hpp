@@ -9,6 +9,8 @@ class User {
 		User();
 		~User();
 		User(int id, std::string name, std::string surname);
+//		User(User& src);
+//		User&	operator=(User& rhs);
 		
 		int			getId() const;
 		std::string getName() const;

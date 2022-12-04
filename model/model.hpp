@@ -14,6 +14,9 @@ class Model {
 
 		std::vector<Book>&	getBooks();
 		std::vector<User>&	getUsers();
+		void				addUser(User& newUser);
+		void				addBook(Book& newBook);
+		void				rentBook(int userId, int bookId);
 
 		template <typename T>
 		int		getIdMax(std::vector<T> vec) {
@@ -30,15 +33,24 @@ class Model {
 		void	deleteObj(typename std::vector<T>& vec, int id){
 			typedef typename std::vector<T>::iterator iterator;
 			iterator it = vec.begin();
+			bool is_found = false;
 			for (; it != vec.end(); ++it) {
-				if (it->getId() == id)
+				if (it->getId() == id){
+					is_found = true;
 					vec.erase(it);
+					break;
+				}
 			}
-			if (it == vec.end())
+			if (!is_found)
 				throw ObjectNotFoundException();
 		};
 
 		class ObjectNotFoundException : public std::exception {
+			public:
+				const char *what() const throw();
+		};
+
+		class BookUnavailableException : public std::exception {
 			public:
 				const char *what() const throw();
 		};
