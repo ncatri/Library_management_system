@@ -1,4 +1,4 @@
-CPPFLAGS = -Wall -Wextra -Werror -I./model -I./view -g3 -fsanitize=address
+CPPFLAGS = -Wall -Wextra -Werror -I./model -I./view -I./controller -g3 -fsanitize=address
 CXX = c++
 
 NAME = run
@@ -11,7 +11,9 @@ BOOKS_DB = livres.db
 SRCS = model/extract_data.cpp 	\
 	   model/book.cpp			\
 	   model/user.cpp			\
-	   view/view.cpp
+	   model/model.cpp			\
+	   view/view.cpp			\
+	   controller/controller.cpp
 
 OBJS_FOLDER = bin
 OBJS = $(addprefix $(OBJS_FOLDER)/, $(SRCS:.cpp=.o))

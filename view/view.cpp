@@ -1,7 +1,6 @@
 #include "view.hpp"
 
 View::View() {}
-
 View::~View() {}
 
 std::string	View::prompt_str(std::string request) {

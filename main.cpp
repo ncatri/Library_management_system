@@ -1,21 +1,27 @@
 #include <iostream>
-#include "extract_data.hpp"
-#include "book.hpp"
-#include "user.hpp"
 #include "view.hpp"
+#include "model.hpp"
+#include "controller.hpp"
 
 void	testDataLoading(std::string booksFile, std::string usersFile);
 void	testView();
 
 int main(int argc, char** argv) {
 
-	if (argc != 3){
+	if (argc != 3 || std::string("livres.db").compare(argv[1]) || std::string("abonnes.db").compare(argv[2])){
 		std::cerr << "Usage: ./run livres.db abonnes.db" << std::endl;
 		return (1);
 	}
 
-	testDataLoading(argv[1], argv[2]);
-	testView();
+	Model model(argv[1], argv[2]);
+	View console;
+
+	Controller	library(model, console);
+	library.showdata();
+//	library.run();
+
+//	testDataLoading(argv[1], argv[2]);
+//	testView();
 };
 
 void testDataLoading(std::string booksFile, std::string usersFile) {

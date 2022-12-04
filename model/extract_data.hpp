@@ -1,5 +1,5 @@
-#ifndef EXTRACT_DATA
-#	define EXTRACT_DATA
+#ifndef EXTRACT_DATA_HPP
+#	define EXTRACT_DATA_HPP
 
 #	include <iostream>
 #	include <fstream>
