@@ -62,12 +62,3 @@ std::vector<std::string> split(std::string str, char sep) {
 	return (result);	
 }
 
-void	FileOperator::saveBooks(std::vector<Book> books, std::string books_file_write) {
-	std::ofstream saveFile(books_file_write);
-	if (saveFile.is_open()) {
-		typedef std::vector<Book>::iterator iterator;
-		for (iterator bi = books.begin(); bi != books.end(); ++bi)
-			saveFile << *bi << '\n';
-	}
-}
-

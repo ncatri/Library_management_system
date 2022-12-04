@@ -4,7 +4,8 @@
 #	include <iostream>
 #	include <fstream>
 #	include <vector>
-#	include "model.hpp"
+#	include "book.hpp"
+#	include "user.hpp"
 
 #	include <sstream>
 
@@ -20,8 +21,15 @@ class FileOperator {
 		std::vector<Book>	loadBooks();
 		std::vector<User>	loadUsers();
 
-		void	saveBooks(std::vector<Book>, std::string books_file_write);
-		void	saveUsers(std::vector<User>, std::string users_file_write);
+		template <typename T>
+		void	saveObjects(std::vector<T> objs, std::string file_to_write) {
+			std::ofstream saveFile(file_to_write);
+			if (saveFile.is_open()) {
+				typedef typename std::vector<T>::iterator iterator;
+				for (iterator it = objs.begin(); it != objs.end(); ++it)
+					saveFile << *it << '\n';
+			}
+		};
 
 	private:
 		std::vector<std::string> 	fromLinesToAttributes(std::string file_name);

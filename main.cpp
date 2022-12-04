@@ -1,8 +1,11 @@
 #include <iostream>
 #include "extract_data.hpp"
-#include "model.hpp"
+#include "book.hpp"
+#include "user.hpp"
+#include "view.hpp"
 
 void	testDataLoading(std::string booksFile, std::string usersFile);
+void	testView();
 
 int main(int argc, char** argv) {
 
@@ -12,6 +15,7 @@ int main(int argc, char** argv) {
 	}
 
 	testDataLoading(argv[1], argv[2]);
+	testView();
 };
 
 void testDataLoading(std::string booksFile, std::string usersFile) {
@@ -20,18 +24,18 @@ void testDataLoading(std::string booksFile, std::string usersFile) {
 	std::vector<Book> books = fileOperator.loadBooks();
 	std::vector<User> users = fileOperator.loadUsers();
 
-	typedef std::vector<Book>::iterator book_iterator;
-	for (book_iterator bi = books.begin(); bi != books.end(); ++bi) {
-		if (bi->getId() == 3)
-			bi->setBorrowerId(42);
-	}
 
-/*
-	typedef std::vector<User>::iterator user_iterator;
-	for (user_iterator ui = users.begin(); ui != users.end(); ++ui)
-		std::cout << *ui << std::endl;
-*/
-	fileOperator.saveBooks(books, booksFile);
-	books[2].setBorrowerId(0);
-	fileOperator.saveBooks(books, booksFile);
+	fileOperator.saveObjects<Book>(books, booksFile);
+	books[2].setBorrowerId(44);
+	fileOperator.saveObjects<Book>(books, booksFile);
+
+	fileOperator.saveObjects<User>(users, usersFile);
+}
+
+void	testView() {
+	View console;
+	console.display("here we are.");
+	int ans = console.prompt_int("Please enter an int: ");
+	console.display("You entered " + std::to_string(ans));
+
 }
