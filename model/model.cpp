@@ -11,3 +11,7 @@ Model::~Model() {}
 
 std::vector<Book>&	Model::getBooks() { return (this->_books); }
 std::vector<User>&	Model::getUsers() { return (this->_users); }
+
+const char	*Model::ObjectNotFoundException::what() const throw() {
+	return ("Object not found");
+}

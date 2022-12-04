@@ -26,6 +26,23 @@ class Model {
 			return (idMax);
 		};
 
+		template <typename T>
+		void	deleteObj(typename std::vector<T>& vec, int id){
+			typedef typename std::vector<T>::iterator iterator;
+			iterator it = vec.begin();
+			for (; it != vec.end(); ++it) {
+				if (it->getId() == id)
+					vec.erase(it);
+			}
+			if (it == vec.end())
+				throw ObjectNotFoundException();
+		};
+
+		class ObjectNotFoundException : public std::exception {
+			public:
+				const char *what() const throw();
+		};
+
 	private:
 
 		FileOperator		_fileOperator;

@@ -5,6 +5,7 @@
 #	include <vector>
 
 enum action {
+	// starting at 1, 0 used for invalid user input
 	ADD_BOOK = 1,
 	DELETE_BOOK,
 	ADD_USER,
@@ -38,7 +39,6 @@ class View {
 			for (iterator it = vect.begin(); it != vect.end(); ++it)
 				this->display_obj(*it);
 		}
-
 };
 
 

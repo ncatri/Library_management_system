@@ -17,7 +17,9 @@ class Controller {
 		Model&	_model;
 		View	_view;
 
-		void	delete_book_action();
+		void	delete_book();
+		void	delete_user();
+		void	add_book();
 		void	quit_action();
 };
 

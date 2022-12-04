@@ -12,7 +12,7 @@ std::string	View::prompt_str(std::string request) {
 }
 
 int		View::prompt_int(std::string request) {
-	std::cout << request;
+	std::cout << request << std::endl;
 	int answer;
 	std::cin >> answer;
 

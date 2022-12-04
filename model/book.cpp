@@ -9,6 +9,8 @@ Book::Book(int id, std::string title1, std::string title2,\
 				std::string author1, std::string author2, int borrowerId) :
 	_id(id), _title1(title1), _title2(title2), _author1(author1), _author2(author2), _borrowerId(borrowerId) {}
 
+Book::Book(Book const& src): _id(src._id), _title1(src._title1), _title2(src._title2), _author1(src._author1), _author2(src._author2), _borrowerId(src._borrowerId)  {}
+
 int	Book::getId() const { return (this->_id); }
 std::string	Book::getTitle1() const {
 	return (this->_title1);

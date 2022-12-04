@@ -10,6 +10,7 @@ class Book {
 		~Book();
 		Book(int id, std::string title1, std::string title2,\
 				std::string author1, std::string author2, int borrowerId);
+		Book(Book const& src);
 
 		int 		getId() const;
 		std::string	getTitle1() const;
@@ -21,12 +22,12 @@ class Book {
 		void		setBorrowerId(int id);
 
 	private:
-		const int			_id;
-		const std::string	_title1;
-		const std::string	_title2;
-		const std::string	_author1;
-		const std::string	_author2;
-		int					_borrowerId;
+		int			_id;
+		std::string	_title1;
+		std::string	_title2;
+		std::string	_author1;
+		std::string	_author2;
+		int			_borrowerId;
 };
 
 std::ostream& operator<<( std::ostream& o, Book& rhs);
