@@ -10,12 +10,15 @@ class Controller {
 		~Controller();
 
 		void	showdata();
+		void	run();
 
 	private:
 
 		Model&	_model;
 		View	_view;
 
+		void	delete_book_action();
+		void	quit_action();
 };
 
 #endif

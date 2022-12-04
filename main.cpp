@@ -17,8 +17,7 @@ int main(int argc, char** argv) {
 	View console;
 
 	Controller	library(model, console);
-	library.showdata();
-//	library.run();
+	library.run();
 
 //	testDataLoading(argv[1], argv[2]);
 //	testView();
