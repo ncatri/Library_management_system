@@ -9,7 +9,6 @@ class Controller {
 		Controller(Model& model, View view);
 		~Controller();
 
-		void	showdata();
 		void	run();
 
 	private:
@@ -23,6 +22,9 @@ class Controller {
 		void	add_user();
 		void	rent_book();
 		void	quit_action();
+		void	show_data();
+		void	return_book();
+		void	show_rented_books();
 };
 
 #endif

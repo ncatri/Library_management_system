@@ -6,7 +6,7 @@ Controller::Controller(Model& model, View view) : _model(model) {
 
 Controller::~Controller() {}
 
-void	Controller::showdata() {
+void	Controller::show_data() {
 	this->_view.display("showing books:");
 	this->_view.display_vector_objs(this->_model.getBooks());
 	this->_view.display("showing users:");
@@ -48,7 +48,14 @@ void	Controller::delete_user() {
 }
 
 void	Controller::quit_action() {
-	this->_view.display("In quit");
+	std::string ans = this->_view.prompt_str("Save? [Y/n]");
+	if (ans.compare("n") == 0 || ans.compare("no") == 0)
+		this->_view.display("Goodbye! (session not registered)");
+	else {
+		this->_model.getFileOperator().saveObjects(this->_model.getBooks(), this->_model.getFileOperator().getBooksFileName());
+		this->_model.getFileOperator().saveObjects(this->_model.getUsers(), this->_model.getFileOperator().getUsersFileName());
+		this->_view.display("Goodbye! (session successfully registered)");
+	}
 }
 
 void	Controller::add_book() {
@@ -90,10 +97,29 @@ void	Controller::rent_book() {
 	int bookId = this->_view.prompt_int("Select book to borrow id: ");
 	try {
 		this->_model.rentBook(userId, bookId);
+		this->_view.display("Operation successfully completed");
 	}
 	catch (std::exception& e) {
 		this->_view.display(e.what());
 	}
+}
+
+void	Controller::return_book() {
+	this->_view.display("In return_book");
+}
+
+void	Controller::show_rented_books() {
+	std::vector<Book> books = this->_model.getBooks();
+	bool is_empty = true;
+	typedef std::vector<Book>::iterator iterator;
+	for (iterator it = books.begin(); it != books.end(); ++it){
+		if (it->getBorrowerId() != 0) {
+			this->_view.display_obj<Book>(*it);
+			is_empty = false;
+		}
+	}
+	if (is_empty)
+		this->_view.display("There is no rented book yet.");
 }
 
 void	Controller::run() {
@@ -108,12 +134,18 @@ void	Controller::run() {
 			this->add_user();
 		else if (answer == DELETE_USER)
 			this->delete_user();
+		else if (answer == RENT_BOOK)
+			this->rent_book();
+		else if (answer == RETURN_BOOK)
+			this->return_book();
+		else if (answer == SHOW_RENTED_BOOKS)
+			this->show_rented_books();
+		else if (answer == SHOW_DATA)
+			this->show_data();
 		else if (answer == QUIT) {
 			this->quit_action();
 			break;
 		}
-		else if (answer == RENT_BOOK)
-			this->rent_book();
 		else
 			this->_view.display("Functionality not implemented yet.");
 		this->_view.prompt_continue();

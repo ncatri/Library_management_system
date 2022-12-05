@@ -18,6 +18,9 @@ class FileOperator {
 		void	displayFile();
 		void	appendFile(std::string const& line);
 
+		std::string getBooksFileName() const;
+		std::string getUsersFileName() const;
+
 		std::vector<Book>	loadBooks();
 		std::vector<User>	loadUsers();
 

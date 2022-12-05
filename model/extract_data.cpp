@@ -4,6 +4,14 @@ FileOperator::FileOperator( std::string books_file_path, std::string users_file_
 
 FileOperator::~FileOperator() {}
 
+std::string FileOperator::getBooksFileName() const {
+	return (this->_books_file_name);
+}
+
+std::string FileOperator::getUsersFileName() const {
+	return (this->_users_file_name);
+}
+
 std::vector<Book> FileOperator::loadBooks() {
 	std::vector<std::string> attributes = this->fromLinesToAttributes(this->_books_file_name);
 	return (this->fromAttributesToBooks(attributes));

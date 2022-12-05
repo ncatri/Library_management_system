@@ -2,6 +2,7 @@
 #	define VIEW_HPP
 
 #	include <iostream>
+#	include <sstream>
 #	include <vector>
 
 enum action {
@@ -13,6 +14,7 @@ enum action {
 	SHOW_RENTED_BOOKS,
 	RENT_BOOK,
 	RETURN_BOOK,
+	SHOW_DATA,
 	QUIT
 };
 

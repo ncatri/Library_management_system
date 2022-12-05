@@ -13,6 +13,8 @@ std::vector<Book>&	Model::getBooks() { return (this->_books); }
 
 std::vector<User>&	Model::getUsers() { return (this->_users); }
 
+FileOperator		Model::getFileOperator() const { return (this->_fileOperator); }
+
 const char	*Model::ObjectNotFoundException::what() const throw() {
 	return ("Object not found (user or book)");
 }

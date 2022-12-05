@@ -14,6 +14,8 @@ class Model {
 
 		std::vector<Book>&	getBooks();
 		std::vector<User>&	getUsers();
+		FileOperator		getFileOperator() const;
+
 		void				addUser(User& newUser);
 		void				addBook(Book& newBook);
 		void				rentBook(int userId, int bookId);
