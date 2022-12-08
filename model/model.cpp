@@ -28,7 +28,7 @@ void	Model::addUser(User& newUser) { this->_users.push_back(newUser); }
 void	Model::addBook(Book& newBook) { this->_books.push_back(newBook); }
 
 void	Model::rentBook(int userId, int bookId) {
-	typedef typename std::vector<User>::iterator it_user;
+	typedef std::vector<User>::iterator it_user;
 	it_user it = this->_users.begin();
 	bool is_found = false;
 	for (; it != this->_users.end() && !is_found; ++it) {
@@ -37,7 +37,7 @@ void	Model::rentBook(int userId, int bookId) {
 	}
 	if (!is_found)
 		throw ObjectNotFoundException();
-	typedef typename std::vector<Book>::iterator it_book;
+	typedef std::vector<Book>::iterator it_book;
 	it_book itb = this->_books.begin();
 	is_found = false;
 	for (; itb != this->_books.end() && !is_found; ++itb) {

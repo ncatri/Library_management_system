@@ -4,3 +4,4 @@ run
 bin/
 test.*
 *.db
+*.dSYM
